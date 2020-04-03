@@ -3,7 +3,9 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
-
+import BlogPage from '@/components/blogPage'
+import Archive from '@/components/archive'
+import AboutMe from '@/components/aboutMe'
 
 Vue.use(Router);
 const router = new Router({
@@ -24,8 +26,22 @@ const router = new Router({
       path: '/register',
       name: 'Register',
       component: Register
-
     },
+    {
+      path: '/blogPage',
+      name: 'blogPage',
+      component: BlogPage,
+    },
+    {
+      path: '/archive',
+      name: 'archive',
+      component: Archive,
+    },
+    {
+      path: '/aboutMe',
+      name: 'aboutMe',
+      component: AboutMe,
+    }
   ]
 
 });
