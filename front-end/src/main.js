@@ -5,21 +5,24 @@ import axios from './http'
 import VueRouter from 'vue-router'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-
-
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+import 'markdown-it-katex'
 
 //阻止显示生产模块的消息
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 // 将 $moment 挂载到 prototype 上，在组件中可以直接使用 this.$moment 访问
 //Vue.prototype.$moment = moment
 // 将 $axios 挂载到 prototype 上，在组件中可以直接使用 this.$axios 访问
-Vue.prototype.$axios = axios
+Vue.prototype.$axios = axios;
 
 Vue.use(VueRouter);
 Vue.use(ElementUI);
+Vue.use(mavonEditor);
 
-
+let mk = require('markdown-it-katex');
+mavonEditor.markdownIt.use(mk);
 
 /*
 在js中new 一个对象，需要返回赋值给某个变量
@@ -34,7 +37,7 @@ new Vue({
   */
   el: '#app',//最终效果会被替换成页面中id为app的div元素，id绑定
   router,//使用路由
-  components: { App },//当前页面想使用的组件名称
+  components: {App},//当前页面想使用的组件名称
   template: '<App/>',//使用的组件应当用这个标签去包裹
   render: h => h(App)
 });

@@ -6,7 +6,8 @@ import Register from '@/components/Register'
 import BlogPage from '@/components/blogPage'
 import Archive from '@/components/archive'
 import AboutMe from '@/components/aboutMe'
-
+import markdownEditor from '@/components/markdownEditor'
+import Blog from '@/components/Blog'
 Vue.use(Router);
 const router = new Router({
   routes: [
@@ -41,6 +42,16 @@ const router = new Router({
       path: '/aboutMe',
       name: 'aboutMe',
       component: AboutMe,
+    },
+    {
+      path: '/editBlog',
+      name: 'markdownEditor',
+      component: markdownEditor,
+    },
+    {
+      path: '/blog',
+      name: 'blog',
+      component: Blog,
     }
   ]
 

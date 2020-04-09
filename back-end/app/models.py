@@ -72,3 +72,34 @@ class User(db.Model):
             return None
         # return payload
         return User.query.get(payload.get('username'))
+
+
+class Blog(db.Model):
+    __tablename__ = 'blogs'
+    id = db.Column(db.Integer, primary_key=True)  # 博客id
+    title = db.Column(db.String(255),index=True)  # 标题
+    loc = db.Column(db.String(255))  # 博客路径/所在文件夹。 因为我在本地写博客喜欢文件夹分类，传入的是总路径，所以还需要把次级路径传进去
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)  # 时间戳
+    views = db.Column(db.Integer, default=0)  # 多少人看过该文章
+    def __repr__(self):
+        return '<Blog {}>'.format(self.title)
+
+
+class Tag(db.Model):
+    __tablename__ = 'tags'
+    id = db.Column(db.Integer,primary_key=True,autoincrement=True)
+    tagname = db.Column(db.String(255))
+    # 外键，关联博客
+    blogId = db.Column(db.ForeignKey('Blog.id'))
+
+
+class Comment(db.Model):
+    __tablename__ = 'comments'
+    id = db.Column(db.Integer,primary_key=True,autoincrement=True)
+    username = db.Column(db.String(128))
+    email = db.Column(db.String(128))
+    comment = db.Column(db.Text)
+    blog = db.Column(db.ForeignKey('Blog.id'))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+
+
